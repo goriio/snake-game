@@ -1,6 +1,6 @@
 export class Score {
   private element: HTMLDivElement;
-  private current: number = 0;
+  current: number = 0;
 
   constructor() {
     this.element = document.querySelector(".score")!;

@@ -1,3 +1,4 @@
+import { Dialog } from "./dialog";
 import { Food } from "./food";
 import { Score } from "./score";
 import { Snake } from "./snake";
@@ -20,7 +21,21 @@ export class Game {
       this.handleInput(event),
     );
 
-    this.start();
+    const startDialog = new Dialog(
+      "The Classic Snake Game 🐍",
+      "Click start to play.",
+      [
+        {
+          label: "Start",
+          onClick: () => {
+            this.start();
+            startDialog.close();
+          },
+        },
+      ],
+    );
+
+    startDialog.show();
   }
 
   start() {
@@ -29,6 +44,12 @@ export class Game {
 
   stop() {
     clearInterval(this.intervalId);
+  }
+
+  reset() {
+    this.snake = new Snake();
+    this.food = new Food(this.gridSize);
+    this.score = new Score();
   }
 
   handleInput(event: KeyboardEvent) {
@@ -56,6 +77,23 @@ export class Game {
       this.snake.isCollidingWithWall(this.gridSize)
     ) {
       this.stop();
+
+      const gameOverDialog = new Dialog(
+        "Game is over 🥹",
+        `You scored ${this.score.current}.`,
+        [
+          {
+            label: "Play again",
+            onClick: () => {
+              this.reset();
+              this.start();
+              gameOverDialog.close();
+            },
+          },
+        ],
+      );
+
+      gameOverDialog.show();
     }
 
     if (this.snake.isCollidingWithFood(this.food)) {

@@ -36,3 +36,51 @@ body {
   background-color: #e3f79b;
   max-width: 100%;
 }
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: #242424de;
+  display: grid;
+  place-items: center;
+}
+
+.dialog {
+  min-width: 24rem;
+  max-width: 100%;
+  padding: 2rem;
+  background: #f1f7db;
+  text-align: center;
+}
+
+.dialog h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.dialog p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dialog-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dialog-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  background: #13a544;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f1f7db;
+  letter-spacing: 2px;
+}
+
+.dialog-button:hover {
+  opacity: 0.8;
+}
